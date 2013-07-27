@@ -22,10 +22,22 @@ plotColumn <- function(colnb) {
 	
 	# actual plotting
 	plot(ken$Date, colvals, type="l", xlab = "Date", ylab = paste0("Price - ", raw_ken[5, colname]))
-	
 	title(paste0("Kenya : ", titl))	
+}
+
+getColname <- function(colnb) { 
+	paste0("Kenya.", colnb) 
+}
+
+decomposeColumn <- function(colnb) {
+	vals <- as.numeric(ken[[getColname(colnb)]]) 
+	col_ts <- ts(vals[!is.na(vals)], frequency=12, start=c(2000,1), end=c(2012,9))	
+	col_dec <- decompose(col_ts)
+	plot(col_dec)
+	col_dec
 }
 
 for(i in 1:48) {
 	plotColumn(i)
+	decomposeColumn(i)
 }

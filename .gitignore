@@ -3,3 +3,8 @@
 
 # Example code in package build process
 *-Ex.R
+
+*.Rout
+*.Rdata
+
+.DS_Store
